@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+    <title>스파르타코딩클럽 | 2주차 숙제</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+
+</head>
+
+<style>
+    * {
+        font-family: 'Jua', sans-serif;
+    }
+
+    .wrap {
+        margin: 50px auto;
+        width: 700px;
+    }
+
+    .picture {
+        margin: auto;
+        width: 600px;
+    }
+</style>
+
+<script>
+  $(document).ready(function() {
+  });
+  $.ajax({
+              type: "GET",
+              url: "https://api.manana.kr/exchange/rate.json",
+              data: {},
+              success: function (response) {
+                  for (let i=0; i<response.length; i++) {
+                    if (response[i]['name'] == 'USDKRW=X') {
+                      $('#usdEx').text(response[i]['rate']);
+                      return;
+                      }
+                  }
+
+              }
+          })
+
+    function hey() {
+           if ($('#basic-url').val() == '') {
+                    alert('성함을 입력하세요!');
+                    $('#basic-url').focus();
+                } else if ($('#inputGroupSelect01').val() == '--- 수량을 선택하세요 ---') {
+                    alert('수량을 선택하세요!');
+                } else if ($('#basic-url1').val() == '') {
+                    alert('주소를 입력해주세요!');
+                    $('#basic-url1').focus();
+                } else if ($('#basic-url2').val() == '') {
+                    alert('전화번호를 입력하세요!');
+                    $('#basic-url2').focus();
+                } else {
+                    alert('주문이 완료되었습니다!');
+            }
+        }
+        
+</script>
+
+<body>
+    <div class="wrap">
+        <center>
+            <img class="picture" src="https://www.sporbiz.co.kr/news/photo/201911/395204_293080_119.png">
+        </center>
+        <br><br><br>
+        <font size=5><b>상품제목&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></font><span
+            style="font-size:medium">가격: 800,000,000원 / 대</span>
+        <br><br>
+        <p>이 차량은 람보르기니 V12 콘셉트카 입니다.</p>
+        <p>819마력으로 제로백 2.8초, 최고속도 349km/h 성능을 갖추고 있습니다.</p>
+        <br>
+        <p><font color="greensky" >달러-원 환율 : <font id='usdEx'></font></font></p>
+        <br><br>
+        <font size=5><b>주문하기</b></font>
+        <br><br>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon3">주문자 성함 :</span>
+            </div>
+            <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <label class="input-group-text" for="inputGroupSelect01">수량</label>
+            </div>
+            <select class="custom-select" id="inputGroupSelect01">
+                <option selected>--- 수량을 선택하세요 ---</option>
+                <option value="1">1대</option>
+                <option value="2">2대</option>
+                <option value="3">3대</option>
+            </select>
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon3">주소 :</span>
+            </div>
+            <input type="text" class="form-control" id="basic-url1" aria-describedby="basic-addon3">
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon3">전화번호 :</span>
+            </div>
+            <input type="text" class="form-control" id="basic-url2" aria-describedby="basic-addon3">
+        </div>
+        <br><br>
+        <a onclick="hey()"><button type="button" class="btn btn-primary btn-lg btn-block">주문하기</button></a>
+    </div>
+</body>
+
+</html>
